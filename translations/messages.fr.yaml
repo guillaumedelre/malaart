@@ -1,0 +1,5 @@
+dashboard.metric.value.jewel.title: 'Montant estimé des bijoux'
+dashboard.metric.value.material.title: 'Nombre total de fournitures'
+dashboard.metric.value.purchase.title: "Montant total des achats"
+dashboard.metric.value.stone.title: 'Nombre total de pierres'
+dashboard.metric.value.supplier.title: 'Nombre total de fournisseurs'

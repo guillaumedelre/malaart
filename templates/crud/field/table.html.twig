@@ -1,0 +1,22 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{# @var field \EasyCorp\Bundle\EasyAdminBundle\Dto\FieldDto #}
+{# @var entity \EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto #}
+{% if ea.crud.currentAction == 'detail' %}
+    <table class="table table-borderless">
+        <thead>
+        <tr>
+            <th colspan="2" scope="col">Libellé</th>
+            <th class="text-right" scope="col">Unité(s)</th>
+        </tr>
+        </thead>
+        {% for item in field.value %}
+            <tr>
+                <td><img class="img-thumbnail" style="max-width:80px;max-height:80px;" src="{{ asset(item.material.image) }}"></td>
+                <td class="align-middle">{{ item|capitalize }}</td>
+                <td class="align-middle text-right">{{ item.units }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    {{ field.formattedValue }}
+{% endif %}
