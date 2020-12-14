@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --color-primary: hsl(285,25%,40%); /* 734d80 */
+}
+
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 80vh;
+    width: 80vw;
+}

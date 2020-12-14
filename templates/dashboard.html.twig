@@ -1,0 +1,57 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %}{{ dashboard_title }}{% endblock page_title %}
+
+{% block page_content %}
+    {% if view_object.metrics %}
+    <div class="card-deck mb-5">
+        {% for metric in view_object.metrics %}
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">{{ metric.value }}</h1>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ metric.title|trans }}</h6>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="card-deck mb-5">
+        {% if view_object.stock.warnings %}
+        <div class="card">
+            <h3 class="lead m-3">
+                <i class="fal fa-exclamation-triangle mr-2"></i>
+                Alertes des stocks ({{ view_object.stock.warnings|length|default(0) }})
+            </h3>
+            <ul class="list-group list-group-flush">
+                {% for materialAlert in view_object.stock.warnings %}
+                    <li class="list-group-item">
+                        Seuil d'alerte ({{ materialAlert.threshold }}) atteint pour <em>{{ materialAlert }}</em>.
+                        <span class="float-right badge badge-pill badge-warning">
+                            {{ materialAlert.units }}
+                            <i class="fal fa-parachute-box mr-2"></i>
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if view_object.stock.jsonData %}
+        <div class="card">
+            <h3 class="lead m-3"><i class="fal fa-parachute-box mr-2"></i>Aperçu des stocks</h3>
+            <div class="card-body">
+                <div class="chart-container" style="position: relative; height:30%; width:80%">
+                    <canvas id="materialStock" width="400"></canvas>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        window.stock = {
+            materials: {{ view_object.stock.jsonData|raw }},
+        }
+    </script>
+{% endblock %}
